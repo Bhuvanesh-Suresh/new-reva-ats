@@ -1,17 +1,13 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+# Exit on error
+set -o errexit  
 
-echo "📦 Installing and building frontend..."
+# Frontend build
 cd frontend
 npm install
 npm run build
-
-echo "📁 Copying frontend build to backend/static..."
 cd ..
+
+# Move build files into backend (if using Flask + static files)
 mkdir -p backend/static
 cp -r frontend/dist/* backend/static/
-
-echo "🐍 Installing Python backend dependencies..."
-pip install -r backend/requirements.txt
-
-echo "✅ Build completed successfully!"
