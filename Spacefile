@@ -1,0 +1,12 @@
+sdk: docker
+python_version: "3.10"
+
+app_port: 7860
+
+build:
+  commands:
+    - chmod +x build.sh
+    - ./build.sh
+
+run:
+  command: uvicorn backend.app:app --host 0.0.0.0 --port 7860
